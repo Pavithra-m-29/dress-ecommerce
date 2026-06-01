@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -256,4 +257,264 @@
 
   <script src="js/main.js"></script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pink Peach Dress Boutique</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --baby-pink: #F4C2C2;
+      --peach: #FFDAB9;
+      --hot-pink: #FF69B4;
+      --white: #ffffff;
+      --text: #333333;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, var(--baby-pink), var(--peach));
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+    header {
+      background: white;
+      padding: 18px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      margin-bottom: 8px;
+      color: var(--hot-pink);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #555;
+      margin: 0 8px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--hot-pink);
+    }
+
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 20px auto;
+      gap: 20px;
+      padding: 0 20px 20px;
+    }
+
+    .filters {
+      width: 250px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      height: fit-content;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .filters h3,
+    .filters h4 {
+      margin-bottom: 10px;
+      color: var(--hot-pink);
+    }
+
+    .filters label {
+      display: block;
+      margin: 8px 0;
+    }
+
+    .products-area {
+      flex: 1;
+    }
+
+    .topbar {
+      background: white;
+      padding: 15px 18px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      flex-wrap: wrap;
+    }
+
+    .topbar input,
+    .topbar select {
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      min-width: 180px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: #f7f7f7;
+    }
+
+    .product-card h3 {
+      margin: 8px 0;
+      font-size: 1.05rem;
+    }
+
+    .price {
+      color: var(--hot-pink);
+      font-size: 1.2em;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .rating {
+      color: #FFA500;
+      margin-bottom: 10px;
+    }
+
+    .btn-add-cart,
+    .btn-reviews {
+      width: 100%;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .btn-add-cart {
+      background: var(--baby-pink);
+      color: #222;
+    }
+
+    .btn-add-cart:hover {
+      background: var(--hot-pink);
+      color: white;
+    }
+
+    .btn-reviews {
+      background: white;
+      color: var(--hot-pink);
+      border: 2px solid var(--hot-pink);
+    }
+
+    .btn-reviews:hover {
+      background: var(--hot-pink);
+      color: white;
+    }
+
+    .no-products {
+      grid-column: 1 / -1;
+      background: white;
+      padding: 40px 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .no-products i {
+      font-size: 2rem;
+      color: var(--hot-pink);
+      margin-bottom: 10px;
+    }
+
+    .count-text {
+      font-weight: bold;
+      color: #555;
+    }
+
+    @media (max-width: 992px) {
+      .container { flex-direction: column; }
+      .filters { width: 100%; }
+      .products { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .products { grid-template-columns: 1fr; }
+      .topbar { justify-content: center; }
+      .topbar input, .topbar select { width: 100%; min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌸 Pavee Pink Peach Dress Boutique 👗</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="index.html">Dresses</a> |
+      <a href="#">Cart (0)</a> |
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <aside class="filters">
+      <h3>Filters</h3>
+
+      <h4>Age Group</h4>
+      <label><input type="checkbox"> Babies (0-2)</label>
+      <label><input type="checkbox"> Kids (3-12)</label>
+      <label><input type="checkbox"> Teens (13-19)</label>
+      <label><input type="checkbox"> Adults (20+)</label>
+
+      <h4 style="margin-top: 16px;">Price Range</h4>
+      <input type="range" min="100" max="5000" style="width: 100%;">
+
+      <h4 style="margin-top: 16px;">Rating</h4>
+      <label><input type="radio" name="rating"> ⭐⭐⭐⭐ & Above</label>
+      <label><input type="radio" name="rating"> ⭐⭐⭐ & Above</label>
+    </aside>
+
+    <main class="products-area">
+      <div class="topbar">
+        <input type="text" id="searchInput" placeholder="Search dresses..." onkeyup="searchProducts()">
+        <select id="sortSelect" onchange="sortProducts()">
+          <option value="">Sort By</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Rating</option>
+          <option value="name">Name</option>
+        </select>
+        <div class="count-text" id="productsCount">Showing 0 products</div>
+      </div>
+
+      <div class="products" id="productGrid">
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+>>>>>>> 8a1d4f319cfdf8240358bac7c2d98f8802b2181c
 </html>
