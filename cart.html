@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Pink Peach Boutique</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Cart Page Specific Styles */
+        .cart-page {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .cart-page h1 {
+            color: var(--dark-pink);
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .cart-items {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-items h2 {
+            color: var(--dark-pink);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid var(--baby-pink);
+            padding-bottom: 10px;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--baby-pink);
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-details h3 {
+            color: var(--dark-pink);
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+        
+        .cart-item-details .age {
+            color: var(--text-light);
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        
+        .cart-item-details .price {
+            color: var(--dark-pink);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .quantity-btn {
+            background: var(--baby-pink);
+            color: var(--text-dark);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background: var(--dark-pink);
+            color: var(--white);
+        }
+        
+        .quantity-display {
+            font-size: 1.1em;
+            font-weight: bold;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .remove-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        
+        .remove-btn:hover {
+            background: #d32f2f;
+        }
+        
+        .cart-summary {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .cart-summary h2 {
+            color: var(--dark-pink);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid var(--baby-pink);
+            padding-bottom: 10px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--baby-pink);
+        }
+        
+        .summary-row:last-child {
+            border-bottom: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--dark-pink);
+        }
+        
+        .summary-label {
+            color: var(--text-light);
+        }
+        
+        .summary-value {
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        
+        .btn-checkout {
+            background: var(--dark-pink);
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .btn-checkout:hover {
+            background: var(--light-pink);
+            transform: scale(1.02);
+        }
+        
+        .btn-continue-shopping {
+            background: var(--white);
+            color: var(--dark-pink);
+            border: 2px solid var(--dark-pink);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn-continue-shopping:hover {
+            background: var(--baby-pink);
+            color: var(--white);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-cart i {
+            font-size: 6em;
+            color: var(--baby-pink);
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart h2 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .empty-cart p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+        
+        @media (max-width: 900px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .cart-item-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .quantity-control {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>🌸 Pink Peach Boutique 👗</h1>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="products.html">Dresses</a>
+                <a href="cart.html" class="active">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cart (<span id="cart-count">0</span>)
+                </a>
+                <a href="#">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Page -->
+    <div class="cart-page">
+        <h1><i class="fas fa-shopping-cart"></i> Shopping Cart</h1>
+        
+        <div class="cart-container" id="cartContainer">
+            <!-- Cart items will be loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Pink Peach Boutique - Your one-stop shop for beautiful dresses for all ages!</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="products.html">Dresses</a>
+                <a href="cart.html">Cart</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📍 Chennai, Tamil Nadu</p>
+                <p>📞 +91 98765 43210</p>
+                <p>✉️ info@pinkpeachboutique.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pink Peach Boutique. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Cart Page Specific Functions
+        function renderCart() {
+            const cartContainer = document.getElementById('cartContainer');
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Your cart is empty</h2>
+                        <p>Add some beautiful dresses to your cart!</p>
+                        <a href="products.html" class="btn-primary">
+                            <i class="fas fa-shopping-bag"></i> Start Shopping
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Calculate total
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal > 2000 ? 0 : 99;
+            const total = subtotal + shipping;
+            
+            let cartHTML = `
+                <div class="cart-items">
+                    <h2><i class="fas fa-list"></i> Cart Items (${cart.length})</h2>
+            `;
+            
+            cart.forEach((item, index) => {
+                cartHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <p class="age">${item.age}</p>
+                            <p class="price">₹${item.price.toLocaleString('en-IN')}</p>
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="quantity-display">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <span style="margin-left: 20px; font-weight: bold; color: var(--dark-pink);">
+                                    Subtotal: ₹${(item.price * item.quantity).toLocaleString('en-IN')}
+                                </span>
+                            </div>
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartHTML += `
+                </div>
+                
+                <div class="cart-summary">
+                    <h2><i class="fas fa-receipt"></i> Order Summary</h2>
+                    <div class="summary-row">
+                        <span class="summary-label">Subtotal (${cart.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
+                        <span class="summary-value">₹${subtotal.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Shipping</span>
+                        <span class="summary-value">${shipping === 0 ? 'FREE' : '₹' + shipping}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">TOTAL</span>
+                        <span class="summary-value">₹${total.toLocaleString('en-IN')}</span>
+                    </div>
+                    <button class="btn-checkout" onclick="proceedToCheckout()">
+                        <i class="fas fa-arrow-right"></i> Proceed to Checkout
+                    </button>
+                    <a href="products.html" class="btn-continue-shopping">
+                        <i class="fas fa-arrow-left"></i> Continue Shopping
+                    </a>
+                    ${shipping > 0 ? `<p style="margin-top: 15px; font-size: 0.9em; color: var(--text-light); text-align: center;">
+                        🎁 Add ₹${(2000 - subtotal).toLocaleString('en-IN')} more for FREE shipping!
+                    </p>` : ''}
+                </div>
+            `;
+            
+            cartContainer.innerHTML = cartHTML;
+        }
+
+        // Update quantity
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            
+            if (cart[index].quantity <= 0) {
+                if (confirm('Remove this item from cart?')) {
+                    removeFromCart(index);
+                    return;
+                } else {
+                    cart[index].quantity = 1;
+                }
+            }
+            
+            saveCart();
+            renderCart();
+            updateCartCount();
+        }
+
+        // Remove from cart
+        function removeFromCart(index) {
+            const removedItem = cart[index];
+            cart.splice(index, 1);
+            
+            saveCart();
+            renderCart();
+            updateCartCount();
+            
+            showNotification(`${removedItem.name} removed from cart!`, 'success');
+        }
+
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Proceed to checkout
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // Save current cart state
+            saveCart();
+            
+            // Navigate to checkout page
+            window.location.href = 'checkout.html';
+        }
+
+        // Initialize cart page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCart();
+            updateCartCount();
+        });
+
+        console.log('Cart Page loaded! 🛒');
+    </script>
+</body>
+</html>
